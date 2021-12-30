@@ -18,7 +18,7 @@ export class Mp4Stream extends Readable {
     this.isRunning = true;
 
     try {
-      const response = await fetch('https://stream2.vider.info/video_dummy2/eyJmaWxlSUQiOiIxNjU0NjAiLCJjaGVja3N1bV9pZCI6IjMzOTY5MjMiLCJwcmVtaXVtIjpmYWxzZSwibGltaXRfcmF0ZV9hZnRlciI6MzE2fQ,,.mp4?', {
+      const response = await fetch(this.url, {
         headers: {
           accept: "*/*",
           "accept-language": "en-US,en;q=0.9,pl-PL;q=0.8,pl;q=0.7",
