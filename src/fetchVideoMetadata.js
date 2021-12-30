@@ -1,8 +1,8 @@
 import fetch from "node-fetch";
 import { cookie } from "./cookie.js";
 
-export const fetchVideoMetadata = async () => {
-  const res = await fetch(process.argv[2], {
+export const fetchVideoMetadata = async (videoCode) => {
+  const res = await fetch(videoCode, {
     headers: {
       accept:
         "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -22,10 +22,7 @@ export const fetchVideoMetadata = async () => {
   try {
     const [, number] = res.match(/https:\/\/vider\.info\/static\/player\/v58\/player\.swf\?file=https:\/\/stream\.vider\.info\/video\/(\d+)\/v\.mp4\?uid=0"/);
     const [, title] = res.match(/<meta name="title" content="(.*?)" \/>/);
-    console.log('title', title);
-    console.log('number', number);
     return {number, title};
   } catch (e) {
-    console.log('error', e);
   }
 }
