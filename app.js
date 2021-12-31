@@ -31,7 +31,7 @@ const download = async (linkViderInfo) => {
 
       response.body.on("data", (data) => {
         bytesDownloaded += data.length;
-        console.log('Progress:', bytesDownloaded/contentLength, '%')
+        console.log('Progress:', bytesDownloaded/contentLength * 100, '%')
         newStream.push(data);
       });
     } catch (e) {
