@@ -22,5 +22,10 @@ export const fetchMp4Url = async (videoNumber) => {
     }
   );
 
+  const mp4Url = link.headers.get("Location")
+
+  if(!mp4Url) {
+    throw new Error('Cant find a url do download video, try download by site')
+  }
   return link.headers.get("Location");
 };
