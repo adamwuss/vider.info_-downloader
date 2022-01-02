@@ -24,6 +24,6 @@ export const fetchVideoMetadata = async (videoCode) => {
     const [, title] = res.match(/<meta name="title" content="(.*?)" \/>/);
     return {number, title};
   } catch (e) {
-    throw new Error('Can\'t get video number. You must refresh the site and enter CAPTCHA')
+    throw new Error('Can\'t get video number. You must refresh the site and enter CAPTCHA');
   }
 }

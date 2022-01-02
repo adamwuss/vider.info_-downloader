@@ -11,7 +11,7 @@ export class Mp4Stream extends Readable {
     this.bytesDownloaded = 0;
     this.contentLength = 0;
     this.isRunning = false;
-}
+  };
 
 async _read() {
   if (this.isRunning) return;
@@ -38,9 +38,9 @@ async _read() {
       format: `Downloading ${process.argv[2]} |${colors.cyan("{bar}")}| ${colors.red("{percentage}%")} || ${colors.blue("{value}/{total} Bytes")} || ${colors.yellow("ETA: {eta}s")}`,
     }, cliProgress.Presets.shades_classic);
 
-    let isBarStarted = false
+    let isBarStarted = false;
 
-    bar.start(100,0)
+    bar.start(100,0);
 
     response.body.on("data", (data) => {
       this.bytesDownloaded += data.length;
