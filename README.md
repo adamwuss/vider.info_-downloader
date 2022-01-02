@@ -1,5 +1,5 @@
 # vider_info_downloader
-Download vide from vider.info script
+Download video from vider.info script
 
 ## Get started 
 1. Dowloand project 
