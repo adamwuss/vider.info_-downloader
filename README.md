@@ -9,3 +9,6 @@
 ```
   node app.js <link_to_download>
 ```
+
+## Warning 
+When can't get number of video, try go to the vider webstie, and enter the CAPTCHA
