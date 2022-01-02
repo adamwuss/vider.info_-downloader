@@ -11,7 +11,7 @@ const stream = new Mp4Stream(urlToDownload);
 
 const fileStream = createWriteStream(`./videos/${title}.mp4`)
 fileStream.on('finish', () => {
-  console.log('Video has been downloaded');
+  console.log('Video has been downloaded!');
 });
 
 stream.pipe(fileStream);
