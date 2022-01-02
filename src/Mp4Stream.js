@@ -1,6 +1,8 @@
 import { Readable } from "stream";
 import fetch from "node-fetch";
 import { cookie } from "./cookie.js";
+import cliProgress from "cli-progress";
+import colors from "colors";
 
 export class Mp4Stream extends Readable {
   constructor(url) {
@@ -31,10 +33,28 @@ async _read() {
 
     this.contentLength = Number(response.headers.get("Content-Length"));
 
+    const bar = new cliProgress.SingleBar({
+      etaBuffer: 1000,
+      format: `Downloading ${process.argv[2]} |${colors.cyan("{bar}")}| ${colors.red("{percentage}%")} || ${colors.blue("{value}/{total} Bytes")} || ${colors.yellow("ETA: {eta}s")}`,
+    }, cliProgress.Presets.shades_classic);
+
+    let isBarStarted = false
+
+    bar.start(100,0)
+
     response.body.on("data", (data) => {
       this.bytesDownloaded += data.length;
       this.push(data);
-      console.log(`Downloaded ${(this.bytesDownloaded / this.contentLength * 100).toFixed(2)}%`)
+      if (!isBarStarted) {
+        isBarStarted = true;
+        bar.setTotal((this.contentLength));
+      }
+
+      bar.update((this.bytesDownloaded));
+
+      if (this.contentLength === this.bytesDownloaded) {
+        bar.stop();
+      }
     });
 
     response.body.on("close", () => {
