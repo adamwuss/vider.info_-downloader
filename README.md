@@ -10,6 +10,7 @@ Download video from vider.info script
 ```
   node app.js <link_to_download>
 ```
+6. When finished, go to the local repository and go to the videos
 
 ## Warning 
 When can't get number of video, try go to the vider webstie, and enter the CAPTCHA
