@@ -35,7 +35,8 @@ async _read() {
 
     const bar = new cliProgress.SingleBar({
       etaBuffer: 1000,
-      format: `Downloading ${process.argv[2]} |${colors.cyan("{bar}")}| ${colors.red("{percentage}%")} || ${colors.blue("{value}/{total} Bytes")} || ${colors.yellow("ETA: {eta}s")}`,
+      format: `Downloading ${process.argv[2]} |${colors.cyan("{bar}")}| ${colors.red("{percentage}%")} || ${colors.yellow("Time: {eta}s")}`,
+      hideCursor: true,
     }, cliProgress.Presets.shades_classic);
 
     let isBarStarted = false;
@@ -45,6 +46,7 @@ async _read() {
     response.body.on("data", (data) => {
       this.bytesDownloaded += data.length;
       this.push(data);
+
       if (!isBarStarted) {
         isBarStarted = true;
         bar.setTotal((this.contentLength));
