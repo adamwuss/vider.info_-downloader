@@ -1,4 +1,4 @@
-import { Mp4Stream } from './src/Mp4Stream.js';
+import { Mp4Stream } from './src/mp4Stream.js';
 import { fetchVideoMetadata } from "./src/fetchVideoMetadata.js";
 import { createWriteStream } from 'fs';
 
